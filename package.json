@@ -1,7 +1,7 @@
 {
-  "name": "register",
+  "name": "eoscmd",
   "version": "1.0.0",
-  "description": "",
+  "description": "EOSJS CLI",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eosjs": "^15.0.0",
-    "minimist": "^1.2.0"
+    "eosjs": "^15.0.0"
   }
 }
