@@ -1,6 +1,7 @@
 // utils.js
 
 const Eos = require('eosjs');
+const passwordPrompt = require('password-prompt');
 
 async function getNewKeys() {
   const privateKey = await Eos.modules.ecc.PrivateKey.randomKey();
@@ -8,17 +9,29 @@ async function getNewKeys() {
   return { privateKey: privateKey.toWif(), publicKey };
 }
 
-function getApi(config) {
+async function getApi(config) {
   const { chainId, httpEndpoint } = config;
+  const privateKey = config.master.privateKey || await passwordPrompt('Enter private key: ', { method: 'hide' });
+  if (!privateKey || !isKeyPairValid(config.master.publicKey, privateKey)) {
+    throw new Error('Private key is invalid');
+  }
   return Eos({
     httpEndpoint,
     chainId,
     broadcast: true,
-    debug: true, // API and transactions
+    debug: true,
     sign: true,
     expireInSeconds: 60,
-    keyProvider: [config.master.privateKey],
+    keyProvider: [privateKey],
   });
+}
+
+function isKeyPairValid(publicKey, privateKey) {
+  try {
+    return Eos.modules.ecc.privateToPublic(privateKey) === publicKey;
+  } catch (err) {
+    return false;
+  }
 }
 
 function generateAccountNameFromAddress({ address }) {
