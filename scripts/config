@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const readline = require('readline');
+
+const config = require('../config.json');
+
+(function askValues(rl, values, after) {
+  const [text, cb] = values.shift();
+  rl.question(`${text}: `, val => {
+    cb(val);
+    if (values.length) { 
+      askValues(rl, values, after);
+    } else {
+      rl.close();
+      if (after) after();
+    }
+  });
+})(
+  readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  }), 
+  [
+    ['Account name', val => config.master.accountName = val],
+    ['Public key', val => config.master.publicKey = val],
+    ['Private key (can leave empty)', val => config.master.privateKey = val ? val : undefined],
+  ],
+  () => fs.writeFileSync('./config.json', JSON.stringify(config, null, 2))
+);
+

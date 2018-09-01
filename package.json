@@ -4,12 +4,14 @@
   "description": "EOSJS CLI",
   "main": "index.js",
   "scripts": {
+    "config": "./scripts/config",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eosjs": "^15.0.0"
+    "eosjs": "^15.0.0",
+    "password-prompt": "^1.0.7"
   }
 }
