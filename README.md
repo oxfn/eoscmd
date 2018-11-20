@@ -36,6 +36,7 @@ or from local repository
 
 ### Commands
 
+ + **buyram** `from` `to` `amount`
  + **buyrambytes** `from` `to` `bytes`
  + **delegatebw** `from` `to` `cpu` `net`
  + **newaccount** `name` `publicKey`

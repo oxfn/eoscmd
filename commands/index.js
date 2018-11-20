@@ -1,6 +1,7 @@
 // commands/index.js
 
 module.exports = {
+  buyram: require('./buyram'),
   buyrambytes: require('./buyrambytes'),
   delegatebw: require('./delegatebw'),
   newaccount: require('./newaccount'),

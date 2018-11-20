@@ -43,8 +43,14 @@ function generateAccountNameFromAddress({ address }) {
   return `${accountName}`;
 }
 
+function formatAmount(amount) {
+  return `${parseFloat(amount).toFixed(4)} EOS`;
+}
+
 module.exports = {
   getApi,
   getNewKeys,
   generateAccountNameFromAddress,
+  isKeyPairValid,
+  formatAmount,
 }
