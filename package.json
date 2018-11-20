@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "eosjs": "^15.0.0",
+    "minimist": "^1.2.0",
     "password-prompt": "^1.0.7"
   }
 }
