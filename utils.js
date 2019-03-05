@@ -54,3 +54,4 @@ module.exports = {
   isKeyPairValid,
   formatAmount,
 }
+

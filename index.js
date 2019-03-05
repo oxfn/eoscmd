@@ -14,19 +14,15 @@ if (DEBUG) {
 }
 
 const [commandName] = args;
+const command = commands[commandName];
 
-if (commands[commandName]) {
+if (command) {
   const api = getApi(config)
     .then(api => {
       params = args.slice(1);
-      const command = commands[commandName];
-      try {
-        command(config, api, params)
-          .then(console.log)
-          .catch(console.error);
-      } catch (err) {
-        console.error(err.message);
-      }
+      command(config, api, params)
+        .then(console.log)
+        .catch(console.error);
     })
     .catch(console.error);
 } else {
